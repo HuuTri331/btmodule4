@@ -1,0 +1,73 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Chỉnh sửa Giao Dịch</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Chỉnh sửa Giao Dịch</h1>-->
+<!--<form th:action="@{/gd/chinh-sua/{id}(id=${giaoDich.maGiaoDich})}" th:object="${giaoDich}" method="post">-->
+<!--    <label for="khachHang">Khách Hàng:</label>-->
+<!--    <select name="khachHang.maKhachHang" id="khachHang" required>-->
+<!--        <option value="" disabled>Chọn Khách Hàng</option>-->
+<!--        <option th:each="khachHang : ${khachHangList}"-->
+<!--                th:value="${khachHang.maKhachHang}"-->
+<!--                th:text="${khachHang.tenKhachHang}"-->
+<!--                th:selected="${khachHang.maKhachHang == giaoDich.khachHang.maKhachHang}">-->
+<!--        </option>-->
+<!--    </select>-->
+
+<!--    <label for="ngayGiaoDich">Ngày Giao Dịch:</label>-->
+<!--    <input type="date" id="ngayGiaoDich" name="ngayGiaoDich" th:field="*{ngayGiaoDich}" required/>-->
+
+<!--    <label for="loaiDichVu">Loại Dịch Vụ:</label>-->
+<!--    <input type="text" id="loaiDichVu" name="loaiDichVu" th:field="*{loaiDichVu}" required/>-->
+
+<!--    <label for="donGia">Đơn Giá (VND/m2):</label>-->
+<!--    <input type="number" id="donGia" name="donGia" th:field="*{donGia}" required/>-->
+
+<!--    <label for="dienTich">Diện Tích (m2):</label>-->
+<!--    <input type="number" id="dienTich" name="dienTich" th:field="*{dienTich}" required/>-->
+
+<!--    <button type="submit">Cập nhật</button>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chỉnh sửa Giao Dịch</title>
+</head>
+<body>
+<h1>Chỉnh sửa Giao Dịch</h1>
+<form th:action="@{/gd/chinh-sua/{id}(id=${giaoDich.maGiaoDich})}" th:object="${giaoDich}" method="post">
+    <div th:if="${#fields.hasErrors('maKhachHang')}" th:errors="*{maKhachHang}">Tên khách hàng bị lỗi</div>
+    <label for="khachHang">Khách Hàng:</label>
+    <select name="maKhachHang" id="khachHang" th:field="*{maKhachHang}" required>
+        <option value="" disabled>Chọn Khách Hàng</option>
+        <option th:each="khachHang : ${khachHangList}"
+                th:value="${khachHang.maKhachHang}"
+                th:text="${khachHang.tenKhachHang}"
+                th:selected="${khachHang.maKhachHang == giaoDich.maKhachHang}">
+        </option>
+    </select>
+
+    <div th:if="${#fields.hasErrors('ngayGiaoDich')}" th:errors="*{ngayGiaoDich}">Ngày giao dịch bị lỗi</div>
+    <label for="ngayGiaoDich">Ngày Giao Dịch:</label>
+    <input type="date" id="ngayGiaoDich" name="ngayGiaoDich" th:field="*{ngayGiaoDich}" required/>
+
+    <div th:if="${#fields.hasErrors('loaiDichVu')}" th:errors="*{loaiDichVu}">Loại dịch vụ bị lỗi</div>
+    <label for="loaiDichVu">Loại Dịch Vụ:</label>
+    <input type="text" id="loaiDichVu" name="loaiDichVu" th:field="*{loaiDichVu}" required/>
+
+    <div th:if="${#fields.hasErrors('donGia')}" th:errors="*{donGia}">Đơn giá bị lỗi</div>
+    <label for="donGia">Đơn Giá (VND/m2):</label>
+    <input type="number" id="donGia" name="donGia" th:field="*{donGia}" required/>
+
+    <div th:if="${#fields.hasErrors('dienTich')}" th:errors="*{dienTich}">Diện tích bị lỗi</div>
+    <label for="dienTich">Diện Tích (m2):</label>
+    <input type="number" id="dienTich" name="dienTich" th:field="*{dienTich}" required/>
+
+    <button type="submit">Cập nhật</button>
+</form>
+</body>
+</html>

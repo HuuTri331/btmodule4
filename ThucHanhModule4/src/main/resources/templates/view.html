@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chi tiết Giao Dịch</title>
+</head>
+<body>
+    <h1>Chi tiết Giao Dịch</h1>
+    <p>Mã giao dịch: <span th:text="${giaoDich.maGiaoDich}">Mã giao dịch</span></p>
+    <p>Tên khách hàng: <span th:text="${giaoDich.khachHang.tenKhachHang}">Tên khách hàng</span></p>
+    <p>Loại dịch vụ: <span th:text="${giaoDich.loaiDichVu}">Loại dịch vụ</span></p>
+    <p>Ngày giao dịch: <span th:text="${giaoDich.ngayGiaoDich}">Ngày giao dịch</span></p>
+    <p>Đơn giá: <span th:text="${giaoDich.donGia}">Đơn giá</span></p>
+    <p>Diện tích: <span th:text="${giaoDich.dienTich}">Diện tích</span></p>
+    <button>
+        <a th:href="@{/gd/xoa/{id}(id=${giaoDich.maGiaoDich})}" onclick="return confirm('Bạn có chắc chắn muốn xóa giao dịch này?');">Xóa</a>
+    </button>
+    <button>
+        <a th:href="@{/gd}"> Quay lai</a>
+    </button>
+    <button><a th:href="@{/gd/chinh-sua/{id}(id=${giaoDich.maGiaoDich})}">Chỉnh sửa</a></button>
+</body>
+</html>

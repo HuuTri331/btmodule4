@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Giao Dịch</title>
+</head>
+<body>
+<h1>Danh sách Giao Dịch</h1>
+<form th:action="@{/gd/tim-kiem}" method="get">
+    <input type="text" name="tenKhachHang" placeholder="Tên Khách Hàng"/>
+    <input type="text" name="loaiDichVu" placeholder="Loại Dịch Vụ"/>
+    <button type="submit">Tìm kiếm</button>
+</form>
+<a th:href="@{/gd/them-moi}">Thêm mới</a>
+<table>
+    <thead>
+    <tr>
+        <th>Mã giao dịch</th>
+        <th>Tên khách hàng</th>
+        <th>Loại dịch vụ</th>
+        <th>Ngày giao dịch</th>
+        <th>Đơn giá (VND/m2)</th>
+        <th>Diện tích (m2)</th>
+        <th>Chi tiết</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="giaoDich : ${giaoDichList}">
+        <td th:text="${giaoDich.maGiaoDich}">Mã giao dịch</td>
+        <td th:text="${giaoDich.khachHang.tenKhachHang}">Tên khách hàng</td>
+        <td th:text="${giaoDich.loaiDichVu}">Loại dịch vụ</td>
+        <td th:text="${giaoDich.ngayGiaoDich}">Ngày giao dịch</td>
+        <td th:text="${giaoDich.donGia}">Đơn giá</td>
+        <td th:text="${giaoDich.dienTich}">Diện tích</td>
+        <td><a th:href="@{/gd/{id}(id=${giaoDich.maGiaoDich})}">Chi tiết</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
